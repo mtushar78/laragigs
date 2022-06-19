@@ -25,8 +25,20 @@ Route::get('/listings', function (){
        "listings" => Listings::all(),
    ]);
 });
-Route::get('/listing/{id}', function ($id){
-    return view('listing',[
-        "listing" => Listings::find($id),
-    ]);
+//Route::get('/listing/{id}', function ($id){
+//    $listing = Listings::find($id);
+//    if($listing){
+//        return view('listing',[
+//            "listing" => Listings::find($id),
+//        ]);
+//    }else{
+//        abort(404);
+//    }
+//});
+Route::get('/listing/{listing}', function (Listings $listing){
+// both are same... this is the most efficient way that laravel facilitates
+        return view('listing',[
+            "listing" => $listing,
+        ]);
 });
+

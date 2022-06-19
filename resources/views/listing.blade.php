@@ -5,6 +5,9 @@
 {{--    <button><a href="/listings">Back</a></button>--}}
 {{--    <h2>{{$listing['title']}}</h2></a>--}}
 {{--    <p>{{$listing['description']}}</p>--}}
+<a href="/listings" class="inline-block text-black ml-4 mb-4"
+><i class="fa-solid fa-arrow-left"></i> Back
+</a>
 <div class="mx-4">
     <div class="bg-gray-50 border border-gray-200 p-10 rounded">
         <div
