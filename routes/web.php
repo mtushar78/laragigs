@@ -14,13 +14,7 @@ use \App\Http\Controllers\ListingController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/hello', function (){
-   return response('<h1>Hello World</h1>');
-});
-Route::get('/listings', [ListingController::class, 'index']);
+Route::get('/', [ListingController::class, 'index']);
 //Route::get('/listing/{id}', function ($id){
 //    $listing = Listings::find($id);
 //    if($listing){
