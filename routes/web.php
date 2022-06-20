@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use \App\Models\Listings;
+use \App\Http\Controllers\ListingController;
 /*
 |-------------------------------------------------------------------------
 | Web Routes
@@ -19,12 +20,7 @@ Route::get('/', function () {
 Route::get('/hello', function (){
    return response('<h1>Hello World</h1>');
 });
-Route::get('/listings', function (){
-   return view('listings',[
-       "heading" => "All Listings",
-       "listings" => Listings::all(),
-   ]);
-});
+Route::get('/listings', [ListingController::class, 'index']);
 //Route::get('/listing/{id}', function ($id){
 //    $listing = Listings::find($id);
 //    if($listing){
@@ -35,10 +31,5 @@ Route::get('/listings', function (){
 //        abort(404);
 //    }
 //});
-Route::get('/listing/{listing}', function (Listings $listing){
-// both are same... this is the most efficient way that laravel facilitates
-        return view('listing',[
-            "listing" => $listing,
-        ]);
-});
+Route::get('/listing/{listing}', [ListingController::class, 'show']);
 
