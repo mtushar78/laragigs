@@ -13,6 +13,14 @@ use \App\Http\Controllers\ListingController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Common Resource Routes:
+// index - Show all listings
+// show - Show single listing
+// create - Show form to create new listing
+// store - Store new listing
+// edit - Show form to edit listing
+// update - Update listing
+// destroy - Delete listing
 
 Route::get('/', [ListingController::class, 'index']);
 //Route::get('/listing/{id}', function ($id){
@@ -25,5 +33,7 @@ Route::get('/', [ListingController::class, 'index']);
 //        abort(404);
 //    }
 //});
-Route::get('/listing/{listing}', [ListingController::class, 'show']);
-
+// show create form
+Route::get('/listings/create', [ListingController::class, 'create']);
+Route::get('/listings/{listing}', [ListingController::class, 'show']);
+Route::post('/listings', [ListingController::class, 'store']);
