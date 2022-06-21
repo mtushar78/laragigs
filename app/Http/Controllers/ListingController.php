@@ -11,7 +11,7 @@ class ListingController extends Controller
 
     public function index()
     {
-//        dd(request()->tags);
+        // dd(session());
         return view('listings.index', [
             "listings" => Listings::latest()->filter(request(['tags', 'search']))->paginate(4),
         ]);
@@ -31,50 +31,50 @@ class ListingController extends Controller
     }
 
     public function store(Request $request)
-    {
-//        dd($request->file('logo'));
+    { //        dd($request->file('logo'));
         $formFields = $request->validate([
-          "company" => ["required",Rule::unique("listings", "company")],
-          "title" => "required",
-          "location" => "required",
-          "email" => ["required","email"],
-          "website" => "required",
-          "tags" => "required",
-          "description" =>"required",
+            "company" => ["required", Rule::unique("listings", "company")],
+            "title" => "required",
+            "location" => "required",
+            "email" => ["required", "email"],
+            "website" => "required",
+            "tags" => "required",
+            "description" => "required",
         ]);
-        if($request->hasFile('logo')){
-            $formFields['logo'] = $request->file('logo')->store('logos','public');
+        if ($request->hasFile('logo')) {
+            $formFields['logo'] = $request->file('logo')->store('logos', 'public');
         }
         Listings::create($formFields);
         return redirect("/")->with('message', 'New List created Successfully!');
     }
 
-    public function edit(Listings $listing){
-        return view('listings.edit',[
+    public function edit(Listings $listing)
+    {
+        return view('listings.edit', [
             "listing" => $listing,
         ]);
     }
 
-    public function update(Request $request, Listings $listing )
-    {
-//        dd($request->file('logo'));
+    public function update(Request $request, Listings $listing)
+    { //        dd($request->file('logo'));
         $formFields = $request->validate([
-          "company" => ["required"],
-          "title" => "required",
-          "location" => "required",
-          "email" => ["required","email"],
-          "website" => "required",
-          "tags" => "required",
-          "description" =>"required",
+            "company" => ["required"],
+            "title" => "required",
+            "location" => "required",
+            "email" => ["required", "email"],
+            "website" => "required",
+            "tags" => "required",
+            "description" => "required",
         ]);
-        if($request->hasFile('logo')){
-            $formFields['logo'] = $request->file('logo')->store('logos','public');
+        if ($request->hasFile('logo')) {
+            $formFields['logo'] = $request->file('logo')->store('logos', 'public');
         }
         $listing->update($formFields);
         return back()->with('message', 'Gig updated Successfully!');
     }
 
-    public function destroy(Listings $listing){
+    public function destroy(Listings $listing)
+    {
         $listing->delete();
         return redirect('/')->with('message', 'Gig Deleted Successfully!');
     }

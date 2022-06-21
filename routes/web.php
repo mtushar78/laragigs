@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use \App\Models\Listings;
 use \App\Http\Controllers\ListingController;
 use \App\Http\Controllers\UserController;
+use App\Models\User;
 /*
 |-------------------------------------------------------------------------
 | Web Routes
@@ -34,6 +35,8 @@ Route::get('/', [ListingController::class, 'index']);
 //        abort(404);
 //    }
 //});
+
+
 // show create form
 Route::get('/listings/create', [ListingController::class, 'create']);
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
@@ -45,4 +48,9 @@ Route::delete('/listings/{listing}', [ListingController::class, 'destroy']);
 Route::get('/register', [UserController::class, 'create']);
 // store new user
 Route::post('/users', [UserController::class, 'store']);
-
+// logout User
+Route::post('/logout', [UserController::class, 'logout']);
+// User login
+Route::get('/login', [UserController::class,'login']);
+// Login submit form
+Route::post('/users/authenticate', [UserController::class, 'authenticate']);
