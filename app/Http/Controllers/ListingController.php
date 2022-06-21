@@ -12,14 +12,14 @@ class ListingController extends Controller
     public function index()
     {
 //        dd(request()->tags);
-        return view('Listings.index', [
+        return view('listings.index', [
             "listings" => Listings::latest()->filter(request(['tags', 'search']))->paginate(4),
         ]);
     }
 
     public function show(Listings $listing)
     {
-        return view('Listings.show', [
+        return view('listings.show', [
             "listing" => $listing,
         ]);
     }
@@ -27,7 +27,7 @@ class ListingController extends Controller
     //show create form
     public function create()
     {
-        return view('Listings.create');
+        return view('listings.create');
     }
 
     public function store(Request $request)
@@ -50,7 +50,7 @@ class ListingController extends Controller
     }
 
     public function edit(Listings $listing){
-        return view('Listings.edit',[
+        return view('listings.edit',[
             "listing" => $listing,
         ]);
     }

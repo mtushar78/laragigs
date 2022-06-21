@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         \App\Models\User::factory(5)->create();
         Listings::factory(6)->create();
-//        Listings::create(
+//        listings::create(
 //            [
 //                'title' => 'Laravel Senior Developer',
 //                'tags' => 'laravel, javascript',
@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
 //                'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam minima et illo reprehenderit quas possimus voluptas repudiandae cum expedita, eveniet aliquid, quam illum quaerat consequatur! Expedita ab consectetur tenetur delensiti?'
 //            ]
 //        );
-//        Listings::create(
+//        listings::create(
 //            [
 //                'title' => 'Backend Developer',
 //                'tags' => 'laravel, php, api',

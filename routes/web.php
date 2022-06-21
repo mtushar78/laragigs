@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use \App\Models\Listings;
 use \App\Http\Controllers\ListingController;
+use \App\Http\Controllers\UserController;
 /*
 |-------------------------------------------------------------------------
 | Web Routes
@@ -24,10 +25,10 @@ use \App\Http\Controllers\ListingController;
 
 Route::get('/', [ListingController::class, 'index']);
 //Route::get('/listing/{id}', function ($id){
-//    $listing = Listings::find($id);
+//    $listing = listings::find($id);
 //    if($listing){
 //        return view('listing',[
-//            "listing" => Listings::find($id),
+//            "listing" => listings::find($id),
 //        ]);
 //    }else{
 //        abort(404);
@@ -40,3 +41,8 @@ Route::post('/listings', [ListingController::class, 'store']);
 Route::get('/listings/{listing}/edit',[ListingController::class, 'edit']);
 Route::put('/listings/{listing}', [ListingController::class, 'update']);
 Route::delete('/listings/{listing}', [ListingController::class, 'destroy']);
+//Show register/ create user form
+Route::get('/register', [UserController::class, 'create']);
+// store new user
+Route::post('/users', [UserController::class, 'store']);
+
