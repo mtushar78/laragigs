@@ -74,4 +74,9 @@ class ListingController extends Controller
         return back()->with('message', 'Gig updated Successfully!');
     }
 
+    public function destroy(Listings $listing){
+        $listing->delete();
+        return redirect('/')->with('message', 'Gig Deleted Successfully!');
+    }
+
 }
