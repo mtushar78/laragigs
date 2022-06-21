@@ -12,9 +12,10 @@
 <div class="mx-4">
     <x-card class="p-10">
 <div class="flex flex-col items-center justify-center text-center">
+    {{-- php artisan storage:link is needed to show the image from storage folder --}}
             <img
                 class="w-48 mr-6 mb-6"
-                src="{{asset('images/acme.png')}}"
+                src="{{$listing->logo ? asset('storage/'.$listing->logo) : asset('images/no-image.png')}}"
                 alt=""
             />
 
@@ -51,7 +52,11 @@
         </div>
 
     </x-card>
-        
+    <x-card class="mt-4 p-2 flex space-x-6">
+        <a href="/listings/{{$listing->id}}/edit">
+            <i class="fa-solid fa-pencil"></i> Edit
+        </a>
+    </x-card> 
     
 </div>
 </x-layout>
