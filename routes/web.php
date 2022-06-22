@@ -50,12 +50,12 @@ Route::put('/listings/{listing}', [ListingController::class, 'update'])->middlew
 // Destroy a listing
 Route::delete('/listings/{listing}', [ListingController::class, 'destroy'])->middleware('auth');
 //Show register/ create user form
-Route::get('/register', [UserController::class, 'create']);
+Route::get('/register', [UserController::class, 'create'])->middleware('guest');
 // store new user
 Route::post('/users', [UserController::class, 'store']);
 // logout User
 Route::post('/logout', [UserController::class, 'logout']);
 // User login
-Route::get('/login', [UserController::class,'login'])->name('login');
+Route::get('/login', [UserController::class,'login'])->name('login')->middleware('guest');
 // Login submit form
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
