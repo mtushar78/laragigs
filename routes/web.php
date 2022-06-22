@@ -39,6 +39,8 @@ Route::get('/', [ListingController::class, 'index']);
 
 // show create form
 Route::get('/listings/create', [ListingController::class, 'create'])->middleware('auth');
+// Show a manage listing
+Route::get('/listings/manage', [ListingController::class, 'manage']);
 // Show a single listing
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
 // Create a single listing

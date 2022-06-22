@@ -59,6 +59,11 @@ class ListingController extends Controller
 
     public function update(Request $request, Listings $listing)
     { //        dd($request->file('logo'));
+        //make sure the owner can update only
+        if($listing->user_id != auth()->id()){
+            abort('403', 'Unauthorized access');
+        }
+
         $formFields = $request->validate([
             "company" => ["required"],
             "title" => "required",
@@ -77,8 +82,14 @@ class ListingController extends Controller
 
     public function destroy(Listings $listing)
     {
+        if($listing->user_id != auth()->id()){
+            abort('403', 'Unauthorized access');
+        }
         $listing->delete();
         return redirect('/')->with('message', 'Gig Deleted Successfully!');
+    }
+    public function manage(){
+        return view('listings.manage',["listings"=>auth()->user()->listings()->get()]);
     }
 
 }
